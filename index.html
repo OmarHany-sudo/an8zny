@@ -4,47 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أنقذني - ردود سريعة لأي موقف</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <!-- إضافة خط Tajawal من Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center font-cairo">
-    <div class="container mx-auto p-4 max-w-lg">
-        <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">أنقذني</h1>
-        <p class="text-center text-gray-600 mb-4">ردود سريعة لأي موقف</p>
-        
-        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-            <h2 class="text-xl font-semibold mb-4">اختر موقف جاهز</h2>
-            <div class="mb-4">
-                <label for="situation" class="block text-gray-700 font-semibold mb-2">اختر الموقف:</label>
-                <select id="situation" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
-                    <option value="" disabled selected>اختر نوع الموقف</option>
-                    <option value="رفض">رفض طلب</option>
-                    <option value="احراج">موقف إحراج</option>
-                    <option value="اعتذار">اعتذار</option>
-                    <option value="شكر">شكر</option>
-                    <option value="مدح">مدح</option>
-                    <option value="تعزية">تعزية</option>
-                    <option value="تهنئة">تهنئة</option>
-                </select>
+<body>
+    <div class="container">
+        <header>
+            <h1>أنقذني</h1>
+            <p class="subtitle">ردود سريعة لأي موقف</p>
+        </header>
+
+        <main>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="quick-responses">ردود جاهزة</button>
+                <button class="tab-btn" data-tab="custom-situation">اشرح موقفك</button>
             </div>
-            <button id="getResponse" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition mb-4">احصل على رد</button>
-        </div>
-        
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-xl font-semibold mb-4">صف موقفك</h2>
-            <div class="mb-4">
-                <label for="customSituation" class="block text-gray-700 font-semibold mb-2">اكتب وصف الموقف:</label>
-                <textarea id="customSituation" rows="4" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="صف الموقف هنا..."></textarea>
+
+            <!-- قسم الردود الجاهزة -->
+            <div class="tab-content active" id="quick-responses-content">
+                <div class="selection-area">
+                    <label for="situation-type">اختر نوع الموقف:</label>
+                    <select id="situation-type">
+                        <option value="" disabled selected>-- اختر نوع الموقف --</option>
+                        <option value="رفض">رفض طلب</option>
+                        <option value="احراج">موقف إحراج</option>
+                        <option value="اعتذار">اعتذار</option>
+                        <option value="شكر">شكر وتقدير</option>
+                        <option value="تهنئة">تهنئة</option>
+                        <option value="مواساة">مواساة</option>
+                        <option value="طلب مساعدة">طلب مساعدة</option>
+                        <option value="تقديم مساعدة">تقديم مساعدة</option>
+                        <option value="تحفيز">تحفيز</option>
+                        <option value="اقتراح">اقتراح</option>
+                        <option value="تعزية">تعزية</option>
+                        <option value="عتاب">عتاب</option>
+                        <option value="مدح">مدح</option>
+                        <option value="نصيحة">نصيحة</option>
+                        <option value="تشجيع">تشجيع</option>
+                        <option value="تهدئة">تهدئة</option>
+                        <option value="اعتراض">اعتراض</option>
+                        <option value="تأجيل">تأجيل</option>
+                        <option value="تعاطف">تعاطف</option>
+                        <option value="تحية">تحية</option>
+                        <option value="وداع">وداع</option>
+                        <option value="مقابلة عمل">مقابلة عمل</option>
+                        <option value="طلب إجازة">طلب إجازة</option>
+                        <option value="مقابلة شخصية">مقابلة شخصية</option>
+                        <option value="تقديم عرض">تقديم عرض</option>
+                        <option value="تقديم شكوى">تقديم شكوى</option>
+                        <option value="طلب معلومات">طلب معلومات</option>
+                        <option value="تقديم اقتراح">تقديم اقتراح</option>
+                        <option value="تقديم عذر">تقديم عذر</option>
+                        <option value="تهنئة بمناسبة">تهنئة بمناسبة</option>
+                    </select>
+                    <button id="get-response" class="btn primary-btn">احصل على رد</button>
+                </div>
             </div>
-            <button id="getCustomResponse" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition mb-4">احصل على رد مخصص</button>
-        </div>
-        
-        <div id="responseBox" class="bg-gray-50 p-4 rounded-md text-gray-800 text-center mt-6 hidden"></div>
-        <button id="copyResponse" class="w-full max-w-lg bg-gray-300 text-gray-700 py-2 rounded-md hover:bg-gray-400 transition mt-4 hidden">نسخ الرد</button>
-        
-        <div id="toast" class="fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded-md shadow-lg hidden">تم نسخ الرد!</div>
+
+            <!-- قسم شرح الموقف -->
+            <div class="tab-content" id="custom-situation-content">
+                <div class="custom-situation-area">
+                    <label for="situation-description">اشرح موقفك بالتفصيل:</label>
+                    <textarea id="situation-description" placeholder="اكتب وصفًا للموقف الذي تواجهه... مثال: صديقي طلب مني قرض وأنا لا أستطيع إقراضه"></textarea>
+                    <div class="keywords-area">
+                        <label for="situation-keywords">كلمات مفتاحية (اختياري):</label>
+                        <input type="text" id="situation-keywords" placeholder="رفض، صديق، قرض، مال، إحراج">
+                    </div>
+                    <button id="analyze-situation" class="btn primary-btn">تحليل الموقف والحصول على رد</button>
+                </div>
+            </div>
+
+            <div class="response-area">
+                <div class="response-container">
+                    <p id="response-text">اختر نوع الموقف أو اشرح موقفك للحصول على رد مناسب...</p>
+                </div>
+                <button id="copy-response" class="btn secondary-btn" disabled>نسخ الرد</button>
+                <button id="get-another" class="btn accent-btn" disabled>رد آخر</button>
+            </div>
+
+            <div id="toast" class="toast">تم نسخ الرد بنجاح!</div>
+        </main>
+
+        <footer>
+            <p>تم تطوير هذا الموقع لمساعدتك في المواقف الصعبة</p>
+        </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,15 +1,312 @@
-@font-face {
-    font-family: 'Cairo';
-    src: url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+/* تعريف المتغيرات العامة */
+:root {
+    --primary-color: #4a6fa5;
+    --secondary-color: #6b8cae;
+    --accent-color: #3d5a80;
+    --light-color: #e0fbfc;
+    --dark-color: #293241;
+    --background-color: #f5f5f5;
+    --card-background: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+    --tab-inactive: #e9ecef;
+    --tab-hover: #dee2e6;
 }
 
+/* إعادة تعيين الأنماط الافتراضية */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* أنماط عامة */
 body {
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--background-color);
+    color: var(--dark-color);
+    line-height: 1.6;
+    direction: rtl;
 }
 
-#responseBox:not(.hidden) {
-    min-height: 80px;
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* أنماط الرأس */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+/* أنماط التبويبات */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background-color: var(--tab-inactive);
+    border: none;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: var(--transition);
+    color: var(--dark-color);
+}
+
+.tab-btn:hover {
+    background-color: var(--tab-hover);
+}
+
+.tab-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* أنماط المحتوى الرئيسي */
+main {
+    flex: 1;
+}
+
+.selection-area, .custom-situation-area {
+    background-color: var(--card-background);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    background-color: white;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23293241' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: left 15px center;
+    background-size: 15px;
+}
+
+/* أنماط منطقة شرح الموقف */
+textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    background-color: white;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    resize: vertical;
+}
+
+.keywords-area {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    background-color: white;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+}
+
+/* أنماط الأزرار */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+}
+
+.primary-btn:hover {
+    background-color: var(--accent-color);
+}
+
+.secondary-btn {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    border: 1px solid #ddd;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.secondary-btn:hover {
+    background-color: #d0ebec;
+}
+
+.accent-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    width: 100%;
+}
+
+.accent-btn:hover {
+    background-color: var(--accent-color);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* أنماط منطقة الرد */
+.response-area {
+    background-color: var(--card-background);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+.response-container {
+    background-color: var(--light-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    min-height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#response-text {
+    text-align: center;
+    color: var(--dark-color);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* أنماط التنبيه */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 1000;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* أنماط التذييل */
+footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 20px 0;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .selection-area, .response-area, .custom-situation-area {
+        padding: 20px;
+    }
+    
+    .tab-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .selection-area, .response-area, .custom-situation-area {
+        padding: 15px;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+    }
+    
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
 }
